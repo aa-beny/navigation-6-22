@@ -1,0 +1,31 @@
+lidar:
+ros2 launch turtlebot4_bringup lite.launch.py 
+rviz2:
+ros2 launch turtlebot4_viz view_robot.launch.py 
+
+
+local:
+ros2 launch turtlebot4_navigation slam.launch.py params:=/home/recoomputer/turtlebot4_ws/src/turtlebot4/turtlebot4_navigation/config/mapper_params_localization.yaml
+
+
+costamp:
+ros2 run map_publisher map_publisher_node --ros-args -p map_file:=/home/recoomputer/turtlebot4_ws/mapadd.pgm -p yaml_file:=/home/recoomputer/turtlebot4_ws/mapadd.yaml
+nv2:
+ros2 launch turtlebot4_navigation nav2.launch.py 
+
+
+
+
+全能賽
+ros2 run pose_navigator pose_navigator
+
+分項賽
+ros2 run pose_navigator color_navigator
+
+
+Blue,Green,Yellow
+/color_sort
+
+ros2 topic pub /pose_name std_msgs/msg/String "{data: 'left'}" --once
+
+ ros2 launch turtlebot4_navigation slam.launch.pyros2 launch turtlebot4_navigation localization.launch.py  map:=/home/recoomputer/turtlebot4_ws/map.yaml
